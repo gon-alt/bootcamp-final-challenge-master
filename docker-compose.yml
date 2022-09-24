@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  nginx-proxy:
+    build: ./hello-world-nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - /home/gonza/Documentos/BootcampDevOps/bootcamp-final-challenge-master/hello-world-nginx/docker-deps/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - app
+
+  hello-world-golang:
+    build: ./hello-world-golang/
+    restart: always
+    ports:
+      - "3002:3002"
+    volumes:
+      - /home/gonza/Documentos/BootcampDevOps/bootcamp-final-challenge-master/hello-world-golang:/app
+    networks:
+      - app
+
+
+  hello-world-nodejs:
+    build: ./hello-world-nodejs/
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/gonza/Documentos/BootcampDevOps/bootcamp-final-challenge-master/hello-world-nodejs:/app
+    networks:
+      - app
+networks:
+  app:
+
+
+  
